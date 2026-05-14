@@ -170,3 +170,65 @@ Even without full generation, the architecture demonstrated how RAG systems impr
 
 ### Key Learning
 One important lesson from this project is that retrieval quality matters more than simply using a powerful model. Better snippet selection, stop-word filtering, and guardrails significantly improved reliability and reduced incorrect answers.
+
+# Ethical Reflection and AI Collaboration
+
+## Limitations and Biases
+
+DocuBot Pro relies on keyword-based retrieval and lightweight scoring instead of semantic embeddings or vector search. Because of this, retrieval quality depends heavily on exact wording and token overlap between the query and the documentation.
+
+The system may also miss valid answers if:
+- the query uses different terminology
+- retrieval thresholds are too strict
+- relevant snippets contain weak keyword overlap
+
+Additionally, the project uses a small local documentation set rather than a large production-scale knowledge base, so retrieval behavior is simplified compared to enterprise RAG systems.
+
+---
+
+## Potential Misuse and Prevention
+
+Like many AI systems, a retrieval assistant could still be misused if users assume all generated answers are automatically correct.
+
+To reduce this risk, the project includes:
+- retrieval grounding
+- refusal guardrails
+- threshold-based evidence checks
+- explicit “I do not know” behavior
+
+The system is intentionally designed to refuse unsupported questions instead of generating speculative answers.
+
+---
+
+## What Surprised Me During Testing
+
+Another surprising realization was understanding that AI hallucination is not necessarily caused by “bad intelligence,” but often by missing or statistically weak information. During testing, it became clear that when the system lacked strong contextual evidence, the model still attempted to complete patterns confidently.
+
+This changed my perspective on AI systems. It reinforced the idea that modern language models are fundamentally advanced pattern recognition systems operating on probabilities rather than true understanding. Working on retrieval and grounding mechanisms made me think more critically about the meaning of intelligence, reasoning, and reliability in AI systems.
+
+One surprising observation was how easily weak retrieval logic could produce misleading results even without a hallucinating language model.
+
+Early versions retrieved entire documents instead of focused snippets, which buried important information and sometimes surfaced unrelated content.
+
+Another important lesson was that retrieval tuning mattered more than expected. Small changes to:
+- stop-word filtering
+- snippet size
+- scoring thresholds
+
+significantly changed the quality and reliability of the system.
+
+---
+
+## Collaboration with AI
+
+AI tools were used throughout the project to:
+- explain unfamiliar code
+- reason about retrieval behavior
+- suggest refactoring approaches
+- analyze guardrail logic
+
+One particularly helpful suggestion was using snippet-based retrieval instead of returning full documents. This improved retrieval precision and made answers significantly more focused and interpretable.
+
+However, not all AI suggestions were reliable. In some cases, AI-generated code introduced incorrect indentation, overly aggressive retrieval thresholds, or logic that returned irrelevant snippets. These situations required manual debugging and careful reasoning before accepting the AI’s recommendations.
+
+This project reinforced the idea that AI is most effective as a collaborative engineering tool rather than an authority that should be trusted blindly.
